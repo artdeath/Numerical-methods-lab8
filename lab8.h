@@ -32,7 +32,7 @@ private:
 
         //[DF(x_k)](dx, dy)= -(f1, f2)
 
-        //Ax = f, Крамер
+        //Ax = f, ГЉГ°Г Г¬ГҐГ°
 
         for (int i = 0; i < 100; ++i) {
 
@@ -162,48 +162,6 @@ public:
         }
         ofs.close(); ofs.clear();
         ofs.open("tx_rk4.txt");
-        for (int i = 0; i < results.size(); i += 2) {
-            ofs << results[i].first << " " << results[i].second << '\n';
-        }
-        ofs.close(); ofs.clear();
-    }
-
-    void eulerMethod(double h, double t_end) {
-
-        double t = 0.0;
-
-        double x = x0;
-        double y = y0;
-
-        std::vector<std::pair<double, double>> results;
-
-        while (t < t_end) {
-
-            results.push_back(std::make_pair(t, x));
-            results.push_back(std::make_pair(t, y));
-
-            std::pair<double, double> d = dt(x, y);
-
-            x += h * d.first;
-            y += h * d.second;
-
-            t += h;
-
-        }
-
-        std::ofstream ofs("xy.txt");
-
-        for (int i = 0; i < results.size(); i += 2) {
-            ofs << results[i].second << " "
-                << results[i + 1].second << '\n';
-        }
-        ofs.close(); ofs.clear();
-        ofs.open("ty.txt");
-        for (int i = 1; i < results.size(); i += 2) {
-            ofs << results[i].first << " " << results[i].second << '\n';
-        }
-        ofs.close(); ofs.clear();
-        ofs.open("tx.txt");
         for (int i = 0; i < results.size(); i += 2) {
             ofs << results[i].first << " " << results[i].second << '\n';
         }
